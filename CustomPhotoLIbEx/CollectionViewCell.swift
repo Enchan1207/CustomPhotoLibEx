@@ -6,24 +6,42 @@
 //
 
 import UIKit
+import Photos
 
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    var image: UIImage?{
+    private var _asset: PHAsset?
+    public var asset: PHAsset?{
         get{
-            return self.imageView.image
+            return self._asset
         }
         
-        set(img){
-            self.imageView.image = img
-            // self.setNeedsDisplay() // パフォーマンス低下しそう
+        set(asset){
+            self._asset = asset
+            updateImageViewFromAsset()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    func updateImageViewFromAsset(){
+        guard let asset = self.asset else {return}
+        let imageViewFrameSize = self.imageView.frame.size
+        
+        PHCachingImageManager().requestImage(
+            for: asset,
+            targetSize: imageViewFrameSize,
+            contentMode: .aspectFill,
+            options: nil
+        ) { (image, nil) in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
     }
 }

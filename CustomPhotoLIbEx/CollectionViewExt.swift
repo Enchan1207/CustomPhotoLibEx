@@ -46,21 +46,10 @@ extension ViewController: UICollectionViewDataSource {
         // セル作って
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "thumbCell", for: indexPath) as! CollectionViewCell
         
-        // PHAsset持ってきて
+        // PHAsset持ってきてセルに渡す
         let index = indexPath.row
         let asset = self.fetchResult.object(at: index)
-        
-        // 画像を取得し割り当て
-        // HACK: クソ実装 これだと画像多くなったときに凍る(UI更新がrequestimageで遅れるのは多分まずい)
-        // セル表示の過程でPHAsset->UIImageをやるのはやはり頭が悪いか
-        DispatchQueue.global().async {
-            PHCachingImageManager().requestImage(for: asset, targetSize: self.layout.itemSize, contentMode: .aspectFill, options: nil) { (image, nil) in
-                DispatchQueue.main.async {
-                    cell.image = image
-                }
-            }
-        }
-        
+        cell.asset = asset
         return cell
     }
 }
