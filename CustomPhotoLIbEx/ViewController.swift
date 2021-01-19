@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         // layout設定
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
-        layout.itemSize = CGSize(width: 70, height: 70)
+        layout.itemSize = CGSize(width: 100, height: 100)
 //        layout.minimumInteritemSpacing = 2
 //        layout.minimumLineSpacing = 2
 //        layout.sectionInset = .init(top: 5, left: 5, bottom: 5, right: 5)
