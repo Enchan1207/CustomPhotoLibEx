@@ -15,6 +15,10 @@
 		9EE0CE8A25B6419E003E1CB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0CE8825B6419E003E1CB4 /* LaunchScreen.storyboard */; };
 		9EE0CE9525B6419E003E1CB4 /* CustomPhotoLIbExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0CE9425B6419E003E1CB4 /* CustomPhotoLIbExTests.swift */; };
 		9EE0CEA025B6419E003E1CB4 /* CustomPhotoLIbExUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0CE9F25B6419E003E1CB4 /* CustomPhotoLIbExUITests.swift */; };
+		9EE0CEB225B647A1003E1CB4 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0CEB025B647A1003E1CB4 /* CollectionViewCell.swift */; };
+		9EE0CEB325B647A1003E1CB4 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0CEB125B647A1003E1CB4 /* CollectionViewCell.xib */; };
+		9EE0CEBD25B6487C003E1CB4 /* CollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0CEBC25B6487C003E1CB4 /* CollectionViewExt.swift */; };
+		9EE0CEC925B66017003E1CB4 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0CEC825B66017003E1CB4 /* PopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		9EE0CE9B25B6419E003E1CB4 /* CustomPhotoLIbExUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomPhotoLIbExUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE0CE9F25B6419E003E1CB4 /* CustomPhotoLIbExUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoLIbExUITests.swift; sourceTree = "<group>"; };
 		9EE0CEA125B6419E003E1CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EE0CEB025B647A1003E1CB4 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		9EE0CEB125B647A1003E1CB4 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		9EE0CEBC25B6487C003E1CB4 /* CollectionViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewExt.swift; sourceTree = "<group>"; };
+		9EE0CEC825B66017003E1CB4 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +110,11 @@
 				9EE0CE7D25B6419B003E1CB4 /* AppDelegate.swift */,
 				9EE0CE7F25B6419B003E1CB4 /* SceneDelegate.swift */,
 				9EE0CE8125B6419B003E1CB4 /* ViewController.swift */,
+				9EE0CEBC25B6487C003E1CB4 /* CollectionViewExt.swift */,
 				9EE0CE8325B6419B003E1CB4 /* Main.storyboard */,
+				9EE0CEC825B66017003E1CB4 /* PopUpViewController.swift */,
+				9EE0CEB025B647A1003E1CB4 /* CollectionViewCell.swift */,
+				9EE0CEB125B647A1003E1CB4 /* CollectionViewCell.xib */,
 				9EE0CE8625B6419E003E1CB4 /* Assets.xcassets */,
 				9EE0CE8825B6419E003E1CB4 /* LaunchScreen.storyboard */,
 				9EE0CE8B25B6419E003E1CB4 /* Info.plist */,
@@ -233,6 +245,7 @@
 			files = (
 				9EE0CE8A25B6419E003E1CB4 /* LaunchScreen.storyboard in Resources */,
 				9EE0CE8725B6419E003E1CB4 /* Assets.xcassets in Resources */,
+				9EE0CEB325B647A1003E1CB4 /* CollectionViewCell.xib in Resources */,
 				9EE0CE8525B6419B003E1CB4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +273,9 @@
 			files = (
 				9EE0CE8225B6419B003E1CB4 /* ViewController.swift in Sources */,
 				9EE0CE7E25B6419B003E1CB4 /* AppDelegate.swift in Sources */,
+				9EE0CEC925B66017003E1CB4 /* PopUpViewController.swift in Sources */,
+				9EE0CEBD25B6487C003E1CB4 /* CollectionViewExt.swift in Sources */,
+				9EE0CEB225B647A1003E1CB4 /* CollectionViewCell.swift in Sources */,
 				9EE0CE8025B6419B003E1CB4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
