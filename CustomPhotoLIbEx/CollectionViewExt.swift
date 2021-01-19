@@ -31,6 +31,7 @@ extension ViewController: UICollectionViewDelegate {
             guard let asset = sender as? PHAsset else {return}
             
             destination.asset = asset
+            destination.navigationItem.title = "え、なにこれ"
         }
     }
     
@@ -56,8 +57,9 @@ extension ViewController: UICollectionViewDataSource {
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
         
+        let cellSize = cell.frame.size
         DispatchQueue.global().async {
-            PHCachingImageManager().requestImage(for: asset, targetSize: self.layout.itemSize, contentMode: .aspectFill, options: options) { (image, nil) in
+            PHCachingImageManager().requestImage(for: asset, targetSize: cellSize, contentMode: .aspectFill, options: options) { (image, nil) in
                 DispatchQueue.main.async {
                     cell.image = image
                 }

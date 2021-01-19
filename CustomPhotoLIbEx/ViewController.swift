@@ -12,70 +12,63 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    var canAccessPhotoLib: Bool?
     var fetchResult: PHFetchResult = PHFetchResult<PHAsset>()
+    let fetchOptions: PHFetchOptions = PHFetchOptions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requireAuthToPhotoLib()
+        // フォトライブラリにアクセスできるか確認
+        requestAuthToPhotoLib()
         
-        // collectionViewの初期化
+        // collectionView初期化
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         let custonCell = UINib(nibName: "CollectionViewCell", bundle: nil)
         self.collectionView.register(custonCell, forCellWithReuseIdentifier: "thumbCell")
 
         // layout設定
-        let itemsInRow = 4, padding: CGFloat = 2
-        let itemWidth = self.view.frame.width / CGFloat(itemsInRow) - padding * 2
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        layout.minimumInteritemSpacing = padding
-        layout.minimumLineSpacing = padding
-        layout.sectionInset = .init(top: 5, left: 5, bottom: 5, right: 5)
+        layout.itemSize = CGSize(width: 70, height: 70)
+//        layout.minimumInteritemSpacing = 2
+//        layout.minimumLineSpacing = 2
+//        layout.sectionInset = .init(top: 5, left: 5, bottom: 5, right: 5)
         collectionView.collectionViewLayout = layout
         
-        // 並べ替えオプションを作って設定
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-        fetchOptions.fetchLimit = 10
-        fetchResult = PHAsset.fetchAssets(with: fetchOptions)
+        // fetchOptionを設定
+        self.fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        self.fetchOptions.fetchLimit = 100
         
     }
     
-    // フォトライブラリへのアクセスを要求する
-    func requireAuthToPhotoLib(){
+    // フォトライブラリから画像をフェッチする
+    func updateFetchResult(){
+        self.fetchResult = PHAsset.fetchAssets(with: self.fetchOptions)
+    }
+    
+    // フォトライブラリにアクセスできるか確認
+    func requestAuthToPhotoLib(){
+        // すでに許可されている?
         let currentStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        
-        // 許可されている?
         if [.authorized, .limited].contains(currentStatus){
-            print("User has already granted access to the library.")
+            self.canAccessPhotoLib = true
+            self.updateFetchResult()
             return
         }
         
-        // フォトライブラリへのアクセスを要求するプロンプトを出す
+        // アクセス要求プロンプトを出す
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { (status) in
-            switch status {
-            case .authorized: // 「すべての写真へのアクセスを許可」
-                print("Authorized!")
-                
-            case .denied: // 「許可しない」
-                print("Denied")
-                
-            case .limited: // 「写真を選択」
-                print("Limited access")
-                
-            case .notDetermined: // ユーザがどうするか決めてない
-                print("Not determined")
-                
-            case .restricted: // ユーザはフォトライブラリへのアクセスを許可できない
-                print("Restricted")
-                
-            @unknown default:
-                fatalError("!?")
+            if [.authorized, .limited].contains(status){
+                self.canAccessPhotoLib = true
+                self.updateFetchResult()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }else{
+                self.canAccessPhotoLib = false
             }
         }
-        
     }
 }
