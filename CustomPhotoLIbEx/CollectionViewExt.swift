@@ -53,8 +53,11 @@ extension ViewController: UICollectionViewDataSource {
         // 画像を取得し割り当て
         // HACK: クソ実装 これだと画像多くなったときに凍る(UI更新がrequestimageで遅れるのは多分まずい)
         // セル表示の過程でPHAsset->UIImageをやるのはやはり頭が悪いか
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        
         DispatchQueue.global().async {
-            PHCachingImageManager().requestImage(for: asset, targetSize: self.layout.itemSize, contentMode: .aspectFill, options: nil) { (image, nil) in
+            PHCachingImageManager().requestImage(for: asset, targetSize: self.layout.itemSize, contentMode: .aspectFill, options: options) { (image, nil) in
                 DispatchQueue.main.async {
                     cell.image = image
                 }
